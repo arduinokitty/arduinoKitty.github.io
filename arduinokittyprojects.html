@@ -12,304 +12,313 @@
  <title>Prodjects</title>
 </head>
 <style>
+  body{
+    background:black;
+  }
 	h1{
-		background:black;
+		background:blue;
 		color:white;
 		font-size:20px;
 		font-style:italic;
 	}
+  h2{
+    background:blue;
+    color:white;
+    font-size:15px;
+    font-style:italic;
+  }
 	</style>
 <body onload="JavaScript:AutoRefresh(5000)">
 	<img src="pic.jpg" alt="Arduino TV">
 	<h1>
 		
-		Up above you can see what the arduino tv looks like(yeah, I know it looks like a bomb) Before I go into how I made it I going to tell you what it does, it has two animations
+		<div1> Up above you can see what the arduino tv looks like(yeah, I know it looks like a bomb) Before I go into how I made it I going to tell you what it does, it has two animations
 		that you can watch on it (you can selsect which one using an IR remote) the first one is two kitty having a watergun fight like 5 year olds, and a cat being like every cat...
-		He's catching a mouse!
+		He's catching a mouse!</div1>
 		
-		So, this is the part where everyone falls asleep while I explain how I made it.
+		<div2> So, this is the part where everyone falls asleep while I explain how I made it.
 		I used a 16x2 lcd screen an IR reciever and an arduino to make the thing work, the arduino as the brains the IR receiver as the ears and the lcd as the muscle.
 		In the case that the image did not load here's the wireing.
 		vo = potentiometer vss = ground vdd = posotive rs = digital 12 rw = ground IR signal = digital 9 en = 11 d4 = 5 d5 = 4 d6 = 3 d7 = 2 A = posotive (through 220 ohm resistor).
 		TIPS; Make sure you use a 220 ohm resistor because any more resistence and the images will not show and any less you lcd might burn out; change which digital pins you use 
-		to fit your needs; use a large breadboard; Change the IR remote buttons for you remote!
+			to fit your needs; use a large breadboard; Change the IR remote buttons for you remote! </div2>
 		
-		I will go into how lcd screens display images another time!
+		<div3> I will go into how lcd screens display images another time! </div3>
 		</h1>
 		
 		
-	<div>	#include <LiquidCrystal.h>
-#include <IRremote.h>
-const int irpin = 9;
-const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
-LiquidCrystal lcd(rs,  en, d4, d5, d6, d7);
-IRrecv irrecv(irpin);
-decode_results results;
-int i;
+	<h2>	<div> #include <LiquidCrystal.h> </div>
+		<div4> #include <IRremote.h> </div4>
+			<div5> const int irpin = 9; </div5>
+			<div6>const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;</div6>
+			<div7>LiquidCrystal lcd(rs,  en, d4, d5, d6, d7);</div7>
+			<div8>IRrecv irrecv(irpin);</div8>
+			<div9>decode_results results;</div9>
+			<div> int i; </div>
 
-void setup() {
-  IrReceiver.enableIRIn();
-  lcd.begin(16, 2);
-  Serial.begin(9600);
+			<div>void setup() { </div>
+			<div> IrReceiver.enableIRIn(); </div>
+			<div>lcd.begin(16, 2);</div>
+			<div> Serial.begin(9600);</div>
 
-}
- void image00() {
-lcd.clear();
+			<div>}</div>
+			<div>void image00() {</div>
+			<div>lcd.clear();</div>
 
-byte image20[8] = {B00000, B00000, B00000, B00000, B01010, B00100, B11100, B10100};
-byte image21[8] = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B01000};
+			<div>byte image20[8] = {B00000, B00000, B00000, B00000, B01010, B00100, B11100, B10100};</div>
+			<div>byte image21[8] = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B01000};</div>
 
-lcd.createChar(0, image20);
-lcd.createChar(1, image21);
+			<div>lcd.createChar(0, image20);</div>
+			<div>lcd.createChar(1, image21);</div>
+			<div>lcd.setCursor(3, 1);</div>
+			<div>lcd.write(byte(0));</div>
+			<div>lcd.setCursor(4, 1);</div>
+			<div>lcd.write(byte(1));</div>
+			<div>}</div>
+			<div>void image01() {</div>
+			<div>lcd.clear();</div>
 
-lcd.setCursor(3, 1);
-lcd.write(byte(0));
-lcd.setCursor(4, 1);
-lcd.write(byte(1));
-}
-void image01() {
-lcd.clear();
-
-byte image20[8] = {B00000, B00000, B00000, B00000, B00101, B00010, B01110, B01010};
-byte image21[8] = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B00100};
-
-
-lcd.createChar(0, image20);
-lcd.createChar(1, image21);
+			<div>byte image20[8] = {B00000, B00000, B00000, B00000, B00101, B00010, B01110, B01010};</div>
+			<div>byte image21[8] = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B00100};</div>
 
 
-lcd.setCursor(3, 1);
-lcd.write(byte(0));
-lcd.setCursor(4, 1);
-lcd.write(byte(1));
-
-}
-void image02() {
-lcd.clear();
-
-byte image20[8] = {B00000, B00000, B00000, B00000, B00010, B00001, B00111, B00101};
-byte image21[8] = {B00000, B00000, B00000, B00000, B10000, B00000, B00000, B00100};
+			<div>lcd.createChar(0, image20);</div>
+			<div>lcd.createChar(1, image21);</div>
 
 
-lcd.createChar(0, image20);
-lcd.createChar(1, image21);
+<div>lcd.setCursor(3, 1);</div>
+<div>lcd.write(byte(0));</div>
+<div>lcd.setCursor(4, 1);</div>
+<div>lcd.write(byte(1));</div>
+
+<div>}</div>
+<div>void image02() {</div>
+<div>lcd.clear();</div>
+
+<div>byte image20[8] = {B00000, B00000, B00000, B00000, B00010, B00001, B00111, B00101};</div>
+<div>byte image21[8] = {B00000, B00000, B00000, B00000, B10000, B00000, B00000, B00100};</div>
 
 
-lcd.setCursor(3, 1);
-lcd.write(byte(0));
-lcd.setCursor(4, 1);
-lcd.write(byte(1));
-
-}
-void image03() {
-lcd.clear();
-
-byte image20[8] = {B00000, B00000, B00000, B00000, B00001, B00000, B00011, B00010};
-byte image21[8] = {B00000, B00000, B00000, B00000, B01000, B10000, B10000, B10100};
+<div>lcd.createChar(0, image20);</div>
+<div>lcd.createChar(1, image21);</div>
 
 
-lcd.createChar(0, image20);
-lcd.createChar(1, image21);
+<div>lcd.setCursor(3, 1);</div>
+<div>lcd.write(byte(0));</div>
+<div>lcd.setCursor(4, 1);</div>
+<div>lcd.write(byte(1));</div>
+
+<div>}</div>
+<div>void image03() {</div>
+<div>lcd.clear();</div>
+
+<div>byte image20[8] = {B00000, B00000, B00000, B00000, B00001, B00000, B00011, B00010};</div>
+<div>byte image21[8] = {B00000, B00000, B00000, B00000, B01000, B10000, B10000, B10100};</div>
 
 
-lcd.setCursor(3, 1);
-lcd.write(byte(0));
-lcd.setCursor(4, 1);
-lcd.write(byte(1));
 
-}
-void image04() {
-lcd.clear();
-
-byte image20[8] = {B00000, B00000, B00000, B00000, B00000, B00000, B00001, B00001};
-byte image21[8] = {B00000, B00000, B00000, B00000, B10100, B01000, B11000, B01100};
+<div>lcd.createChar(0, image20);</div>
+<div>lcd.createChar(1, image21);</div>
 
 
-lcd.createChar(0, image20);
-lcd.createChar(1, image21);
+<div>lcd.setCursor(3, 1);</div>
+<div>lcd.write(byte(0));</div>
+<div>lcd.setCursor(4, 1);</div>
+<div>lcd.write(byte(1));</div>
+
+<div>}</div>
+<div>void image04() {</div>
+<div>lcd.clear();</div>
+
+<div>byte image20[8] = {B00000, B00000, B00000, B00000, B00000, B00000, B00001, B00001};</div>
+<div>byte image21[8] = {B00000, B00000, B00000, B00000, B10100, B01000, B11000, B01100};</div>
 
 
-lcd.setCursor(3, 1);
-lcd.write(byte(0));
-lcd.setCursor(4, 1);
-lcd.write(byte(1));
-
-}
-void image05() {
-lcd.clear();
-
-byte image21[8] = {B00000, B00000, B00000, B00101, B00010, B00010, B01110, B00000};
+<div>lcd.createChar(0, image20);</div>
+<div>lcd.createChar(1, image21);</div>
 
 
-lcd.createChar(0, image21);
+<div>lcd.setCursor(3, 1);</div>
+<div>lcd.write(byte(0));</div>
+<div>lcd.setCursor(4, 1);</div>
+<div>lcd.write(byte(1));</div>
+
+<div>}</div>
+<div>void image05() {</div>
+<div>lcd.clear();</div>
+
+<div>byte image21[8] = {B00000, B00000, B00000, B00101, B00010, B00010, B01110, B00000};</div>
 
 
-lcd.setCursor(4, 1);
-lcd.write(byte(0));
-
-}
-void image06() {
-lcd.clear();
-
-byte image21[8] = {B00000, B00000, B00000, B00101, B00010, B00010, B01110, B00000};
-byte image28[8] = {B00000, B01010, B10100, B11100, B00100, B00100, B01010, B01010};
-byte image27[8] = {B00000, B00000, B11001, B00000, B00000, B00000, B00000, B00000};
+<div>lcd.createChar(0, image21);</div>
 
 
-lcd.createChar(0, image21);
-lcd.createChar(1, image28);
-lcd.createChar(2, image27);
+<div>lcd.setCursor(4, 1);</div>
+<div>lcd.write(byte(0));</div>
+
+<div>}</div>
+<div>void image06() {</div>
+<div>lcd.clear();</div>
+
+<div>byte image21[8] = {B00000, B00000, B00000, B00101, B00010, B00010, B01110, B00000};</div>
+<div>byte image28[8] = {B00000, B01010, B10100, B11100, B00100, B00100, B01010, B01010};</div>
+<div>byte image27[8] = {B00000, B00000, B11001, B00000, B00000, B00000, B00000, B00000};</div>
 
 
-lcd.setCursor(4, 1);
-lcd.write(byte(0));
-lcd.setCursor(11, 1);
-lcd.write(byte(1));
-lcd.setCursor(10, 1);
-lcd.write(byte(2));
-
-}
-void image07() {
-lcd.clear();
-
-byte image28[8] = {B00000, B00101, B11010, B01110, B00010, B00010, B00101, B00101};
-byte image26[8] = {B00000, B00000, B00011, B00000, B00000, B00000, B00000, B00000};
-byte image21[8] = {B00000, B00000, B01010, B00101, B01111, B00100, B00100, B01010};
-byte image22[8] = {B00000, B00000, B00000, B10011, B00000, B00000, B00000, B00000};
+<div>lcd.createChar(0, image21);</div>
+<div>lcd.createChar(1, image28);<div>
+<div>lcd.createChar(2, image27);</div>
 
 
-lcd.createChar(0, image28);
-lcd.createChar(1, image26);
-lcd.createChar(2, image21);
-lcd.createChar(3, image22);
+<div>lcd.setCursor(4, 1);</div>
+<div>lcd.write(byte(0));</div>
+<div>lcd.setCursor(11, 1);</div>
+<div>lcd.write(byte(1));</div>
+<div>lcd.setCursor(10, 1);</div>
+<div>lcd.write(byte(2));</div>
+
+<div>}</div>
+<div>void image07() {</div>
+<div>lcd.clear();</div>
+
+<div>byte image28[8] = {B00000, B00101, B11010, B01110, B00010, B00010, B00101, B00101};</div>
+<div>byte image26[8] = {B00000, B00000, B00011, B00000, B00000, B00000, B00000, B00000};</div>
+<div>byte image21[8] = {B00000, B00000, B01010, B00101, B01111, B00100, B00100, B01010};</div>
+<div>byte image22[8] = {B00000, B00000, B00000, B10011, B00000, B00000, B00000, B00000};</div>
 
 
-lcd.setCursor(11, 1);
-lcd.write(byte(0));
-lcd.setCursor(9, 1);
-lcd.write(byte(1));
-lcd.setCursor(4, 1);
-lcd.write(byte(2));
-lcd.setCursor(5, 1);
-lcd.write(byte(3));
-
-}
-void image08() {
-lcd.clear();
-
-byte image28[8] = {B00000, B00101, B11010, B01110, B00010, B00010, B00101, B00101};
-byte image21[8] = {B00000, B00000, B01010, B00101, B01111, B00100, B00100, B01010};
-byte image22[8] = {B00000, B00000, B00000, B10000, B00000, B00000, B00000, B00000};
-byte image26[8] = {B00000, B00000, B00000, B11000, B00000, B00000, B00000, B00000};
-byte image24[8] = {B00000, B00000, B00000, B00110, B00000, B00000, B00000, B00000};
+<div>lcd.createChar(0, image28);</div>
+<div>lcd.createChar(1, image26);</div>
+<div>lcd.createChar(2, image21);</div>
+<div>lcd.createChar(3, image22);</div>
 
 
-lcd.createChar(0, image28);
-lcd.createChar(1, image21);
-lcd.createChar(2, image22);
-lcd.createChar(3, image26);
-lcd.createChar(4, image24);
+<div>lcd.setCursor(11, 1);</div>
+<div>lcd.write(byte(0));</div>
+<div>lcd.setCursor(9, 1);</div>
+<div>lcd.write(byte(1));</div>
+<div>lcd.setCursor(4, 1);</div>
+<div>lcd.write(byte(2));</div>
+<div>lcd.setCursor(5, 1);</div>
+<div>lcd.write(byte(3));</div>
+
+<div>}</div>
+<div>void image08() {</div>
+<div>lcd.clear();</div>
+
+<div>byte image28[8] = {B00000, B00101, B11010, B01110, B00010, B00010, B00101, B00101};</div>
+<div>byte image21[8] = {B00000, B00000, B01010, B00101, B01111, B00100, B00100, B01010};</div>
+<div>byte image22[8] = {B00000, B00000, B00000, B10000, B00000, B00000, B00000, B00000};</div>
+<div>byte image26[8] = {B00000, B00000, B00000, B11000, B00000, B00000, B00000, B00000};</div>
+<div>byte image24[8] = {B00000, B00000, B00000, B00110, B00000, B00000, B00000, B00000};</div>
 
 
-lcd.setCursor(11, 1);
-lcd.write(byte(0));
-lcd.setCursor(4, 1);
-lcd.write(byte(1));
-lcd.setCursor(5, 1);
-lcd.write(byte(2));
-lcd.setCursor(9, 1);
-lcd.write(byte(3));
-lcd.setCursor(7, 1);
-lcd.write(byte(4));
-
-}
-void image09() {
-lcd.clear();
-
-byte image28[8] = {B00000, B00101, B00010, B00111, B00010, B00010, B00101, B00101};
-byte image21[8] = {B00000, B00000, B01010, B00100, B01110, B00100, B00100, B01010};
+<div>lcd.createChar(0, image28);</div>
+<div>lcd.createChar(1, image21);</div>
+<div>lcd.createChar(2, image22);</div>
+<div>lcd.createChar(3, image26);</div>
+<div>lcd.createChar(4, image24);</div>
 
 
-lcd.createChar(0, image28);
-lcd.createChar(1, image21);
+<div>lcd.setCursor(11, 1);</div>
+<div>lcd.write(byte(0));</div>
+<div>lcd.setCursor(4, 1);</div>
+<div>lcd.write(byte(1));</div>
+<div>lcd.setCursor(5, 1);</div>
+<div>lcd.write(byte(2));</div>
+<div>lcd.setCursor(9, 1);</div>
+<div>lcd.write(byte(3));</div>
+<div>lcd.setCursor(7, 1);</div>
+<div>lcd.write(byte(4));</div>
+
+<div>}</div>
+<div>void image09() {</div>
+<div>lcd.clear();</div>
+
+<div>byte image28[8] = {B00000, B00101, B00010, B00111, B00010, B00010, B00101, B00101};</div>
+<div>byte image21[8] = {B00000, B00000, B01010, B00100, B01110, B00100, B00100, B01010};</div>
 
 
-lcd.setCursor(11, 1);
-lcd.write(byte(0));
-lcd.setCursor(4, 1);
-lcd.write(byte(1));
-
-}
+<div>lcd.createChar(0, image28);</div>
+<div>lcd.createChar(1, image21);</div>
 
 
-void loop() {
-   if (irrecv.decode(&results)) 
-   {
-     irrecv.resume();   
-   }
-   Serial.println(results.value);
+<div>lcd.setCursor(11, 1);</div>
+<div>lcd.write(byte(0));</div>
+<div>lcd.setCursor(4, 1);</div>
+<div>lcd.write(byte(1));</div>
+
+<div>}</div>
+
+
+<div>void loop() {</div>
+   <div>if (irrecv.decode(&results)) </div>
+   <div>{</div>
+     <div>irrecv.resume();</div>
+   <div>}</div>
+   <div>Serial.println(results.value);</div>
    
-  if(results.value == 16753245){
-    i = 5;
-    delay(100);
-    lcd.setCursor(0, 1);
-    lcd.print("animation 1");
-  }
+  <div>if(results.value == 16753245){</div>
+    <div>i = 5;</div>
+    <div>delay(100);</div>
+   <div> lcd.setCursor(0, 1);</div>
+   <div> lcd.print("animation 1");</div>
+ <div> }</div>
   
-      if(results.value == 16754775){
-      i = 10;
-      delay(100);
-      Serial.print("It should work"); 
-      delay(250);
-      lcd.setCursor(0, 1);
-      delay(500);
-      lcd.print("animation 2");  
-}
-      if(results.value == 16712445 && i == 10){
-        Serial.print(i);
-        delay(100);
-        Serial.print("It should work");
-        lcd.clear();
-        image00();
-        delay(250); 
-        image01();
-        delay(250);
-        image02();
-        delay(250);
-        image03();
-        delay(250);
-        image04();
-        delay(250);    
-      }
-            if(results.value == 16712445 && i == 5){
-        Serial.print(i);
-        delay(100);
-        Serial.print("It should work");
-        lcd.clear();
-        image05();
-        delay(2000); 
-        image06();
-        delay(250);
-        image07();
-        delay(250);
-        image08();
-        delay(250);
-        image09();
-        delay(250);
-        lcd.clear();
-        delay(250);
-        lcd.setCursor(0, 0);
-        delay(250); 
-        lcd.print("It was") ;
-        delay(250);
-        lcd.setCursor(0, 1);
-        delay(250);
-        lcd.print("just water!");
-        delay(5000); 
-        lcd.clear();
-      }
-}
-		</div>
+      <div>if(results.value == 16754775){</div>
+      <div>i = 10;</div>
+      <div>delay(100);</div>
+      <div>Serial.print("It should work"); </div>
+      <div>delay(250);</div>
+      <div>lcd.setCursor(0, 1);</div>
+      <div>delay(500);</div>
+     <div> lcd.print("animation 2"); </div> 
+<div>}</div>
+      <div>if(results.value == 16712445 && i == 10){</div>
+        <div>Serial.print(i);</div>
+        <div>delay(100);</div>
+        <div>Serial.print("It should work");</div>
+        <div>lcd.clear();</div>
+        <div>image00();</div>
+        <div>delay(250); </div>
+        <div>image01();</div>
+        <div>delay(250);</div>
+        <div>image02();</div>
+        <div>delay(250);</div>
+        <div>image03();</div>
+        <div>delay(250);</div>
+        <div>image04();</div>
+        <div>delay(250);</div>
+      <div>}</div>
+            <div>if(results.value == 16712445 && i == 5){</div>
+        <div>Serial.print(i);</div>
+       <div> delay(100);</div>
+        <div>Serial.print("It should work");</div>
+        <div>lcd.clear();</div>
+        <div>image05();</div>
+        <div>delay(2000); </div>
+        <div>image06();</div>
+        <div>delay(250);</div>
+        <div>image07();</div>
+        <div>delay(250);</div>
+        <div>image08();</div>
+        <div>delay(250);</div>
+       <div> image09();</div>
+        <div>delay(250);</div>
+       <div> lcd.clear();</div>
+        <div>delay(250);</div>
+        <div>lcd.setCursor(0, 0);</div>
+        <div>delay(250); </div>
+        <div>lcd.print("It was") ;</div>
+        <div>delay(250);</div>
+       <div> lcd.setCursor(0, 1);</div>
+        <div>delay(250);</div>
+        <div>lcd.print("just water!");</div>
+        <div>delay(5000); </div>
+        <div>lcd.clear();</div>
+      <div>}</div>
+<div>}</div>
+		</h2>
       
 		
 	
