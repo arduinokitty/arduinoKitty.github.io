@@ -21,8 +21,292 @@
 	</style>
 <body onload="JavaScript:AutoRefresh(5000)">
 	<h1>
-		This is Where I will put all of my prodjects!
+		<img src="pic.jpg" alt="Arduino TV">
+		Up above you can see what the arduino tv looks like, I used a 16x2 lcd screen an IR reciever and an arduino.
+		in the case that the image did not load here's the wireing.
+		vo = potentiometer vss = ground vdd = posotive rs = digital 12 rw = ground IR signal = digital 9 en = 11 d4 = 5 d5 = 4 d6 = 3 d7 = 2 A = posotive (through 220 ohm resistor).
+		TIPS; Make sure you use a 220 ohm resistor because any more resistence and the images will not show and any less you lcd might burn out; change which digital pins you use 
+		to fit your needs; use a large breadboard; Change the IR remote buttons for you remote!
+		
+		I will go into how lcd screens display images another time!
+		
+		#include <LiquidCrystal.h>
+#include <IRremote.h>
+const int irpin = 9;
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs,  en, d4, d5, d6, d7);
+IRrecv irrecv(irpin);
+decode_results results;
+int i;
+
+void setup() {
+  IrReceiver.enableIRIn();
+  lcd.begin(16, 2);
+  Serial.begin(9600);
+
+}
+ void image00() {
+lcd.clear();
+
+byte image20[8] = {B00000, B00000, B00000, B00000, B01010, B00100, B11100, B10100};
+byte image21[8] = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B01000};
+
+lcd.createChar(0, image20);
+lcd.createChar(1, image21);
+
+lcd.setCursor(3, 1);
+lcd.write(byte(0));
+lcd.setCursor(4, 1);
+lcd.write(byte(1));
+}
+void image01() {
+lcd.clear();
+
+byte image20[8] = {B00000, B00000, B00000, B00000, B00101, B00010, B01110, B01010};
+byte image21[8] = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B00100};
+
+
+lcd.createChar(0, image20);
+lcd.createChar(1, image21);
+
+
+lcd.setCursor(3, 1);
+lcd.write(byte(0));
+lcd.setCursor(4, 1);
+lcd.write(byte(1));
+
+}
+void image02() {
+lcd.clear();
+
+byte image20[8] = {B00000, B00000, B00000, B00000, B00010, B00001, B00111, B00101};
+byte image21[8] = {B00000, B00000, B00000, B00000, B10000, B00000, B00000, B00100};
+
+
+lcd.createChar(0, image20);
+lcd.createChar(1, image21);
+
+
+lcd.setCursor(3, 1);
+lcd.write(byte(0));
+lcd.setCursor(4, 1);
+lcd.write(byte(1));
+
+}
+void image03() {
+lcd.clear();
+
+byte image20[8] = {B00000, B00000, B00000, B00000, B00001, B00000, B00011, B00010};
+byte image21[8] = {B00000, B00000, B00000, B00000, B01000, B10000, B10000, B10100};
+
+
+lcd.createChar(0, image20);
+lcd.createChar(1, image21);
+
+
+lcd.setCursor(3, 1);
+lcd.write(byte(0));
+lcd.setCursor(4, 1);
+lcd.write(byte(1));
+
+}
+void image04() {
+lcd.clear();
+
+byte image20[8] = {B00000, B00000, B00000, B00000, B00000, B00000, B00001, B00001};
+byte image21[8] = {B00000, B00000, B00000, B00000, B10100, B01000, B11000, B01100};
+
+
+lcd.createChar(0, image20);
+lcd.createChar(1, image21);
+
+
+lcd.setCursor(3, 1);
+lcd.write(byte(0));
+lcd.setCursor(4, 1);
+lcd.write(byte(1));
+
+}
+void image05() {
+lcd.clear();
+
+byte image21[8] = {B00000, B00000, B00000, B00101, B00010, B00010, B01110, B00000};
+
+
+lcd.createChar(0, image21);
+
+
+lcd.setCursor(4, 1);
+lcd.write(byte(0));
+
+}
+void image06() {
+lcd.clear();
+
+byte image21[8] = {B00000, B00000, B00000, B00101, B00010, B00010, B01110, B00000};
+byte image28[8] = {B00000, B01010, B10100, B11100, B00100, B00100, B01010, B01010};
+byte image27[8] = {B00000, B00000, B11001, B00000, B00000, B00000, B00000, B00000};
+
+
+lcd.createChar(0, image21);
+lcd.createChar(1, image28);
+lcd.createChar(2, image27);
+
+
+lcd.setCursor(4, 1);
+lcd.write(byte(0));
+lcd.setCursor(11, 1);
+lcd.write(byte(1));
+lcd.setCursor(10, 1);
+lcd.write(byte(2));
+
+}
+void image07() {
+lcd.clear();
+
+byte image28[8] = {B00000, B00101, B11010, B01110, B00010, B00010, B00101, B00101};
+byte image26[8] = {B00000, B00000, B00011, B00000, B00000, B00000, B00000, B00000};
+byte image21[8] = {B00000, B00000, B01010, B00101, B01111, B00100, B00100, B01010};
+byte image22[8] = {B00000, B00000, B00000, B10011, B00000, B00000, B00000, B00000};
+
+
+lcd.createChar(0, image28);
+lcd.createChar(1, image26);
+lcd.createChar(2, image21);
+lcd.createChar(3, image22);
+
+
+lcd.setCursor(11, 1);
+lcd.write(byte(0));
+lcd.setCursor(9, 1);
+lcd.write(byte(1));
+lcd.setCursor(4, 1);
+lcd.write(byte(2));
+lcd.setCursor(5, 1);
+lcd.write(byte(3));
+
+}
+void image08() {
+lcd.clear();
+
+byte image28[8] = {B00000, B00101, B11010, B01110, B00010, B00010, B00101, B00101};
+byte image21[8] = {B00000, B00000, B01010, B00101, B01111, B00100, B00100, B01010};
+byte image22[8] = {B00000, B00000, B00000, B10000, B00000, B00000, B00000, B00000};
+byte image26[8] = {B00000, B00000, B00000, B11000, B00000, B00000, B00000, B00000};
+byte image24[8] = {B00000, B00000, B00000, B00110, B00000, B00000, B00000, B00000};
+
+
+lcd.createChar(0, image28);
+lcd.createChar(1, image21);
+lcd.createChar(2, image22);
+lcd.createChar(3, image26);
+lcd.createChar(4, image24);
+
+
+lcd.setCursor(11, 1);
+lcd.write(byte(0));
+lcd.setCursor(4, 1);
+lcd.write(byte(1));
+lcd.setCursor(5, 1);
+lcd.write(byte(2));
+lcd.setCursor(9, 1);
+lcd.write(byte(3));
+lcd.setCursor(7, 1);
+lcd.write(byte(4));
+
+}
+void image09() {
+lcd.clear();
+
+byte image28[8] = {B00000, B00101, B00010, B00111, B00010, B00010, B00101, B00101};
+byte image21[8] = {B00000, B00000, B01010, B00100, B01110, B00100, B00100, B01010};
+
+
+lcd.createChar(0, image28);
+lcd.createChar(1, image21);
+
+
+lcd.setCursor(11, 1);
+lcd.write(byte(0));
+lcd.setCursor(4, 1);
+lcd.write(byte(1));
+
+}
+
+
+void loop() {
+   if (irrecv.decode(&results)) 
+   {
+     irrecv.resume();   
+   }
+   Serial.println(results.value);
+   
+  if(results.value == 16753245){
+    i = 5;
+    delay(100);
+    lcd.setCursor(0, 1);
+    lcd.print("animation 1");
+  }
+  
+      if(results.value == 16754775){
+      i = 10;
+      delay(100);
+      Serial.print("It should work"); 
+      delay(250);
+      lcd.setCursor(0, 1);
+      delay(500);
+      lcd.print("animation 2");  
+}
+      if(results.value == 16712445 && i == 10){
+        Serial.print(i);
+        delay(100);
+        Serial.print("It should work");
+        lcd.clear();
+        image00();
+        delay(250); 
+        image01();
+        delay(250);
+        image02();
+        delay(250);
+        image03();
+        delay(250);
+        image04();
+        delay(250);    
+      }
+            if(results.value == 16712445 && i == 5){
+        Serial.print(i);
+        delay(100);
+        Serial.print("It should work");
+        lcd.clear();
+        image05();
+        delay(2000); 
+        image06();
+        delay(250);
+        image07();
+        delay(250);
+        image08();
+        delay(250);
+        image09();
+        delay(250);
+        lcd.clear();
+        delay(250);
+        lcd.setCursor(0, 0);
+        delay(250); 
+        lcd.print("It was") ;
+        delay(250);
+        lcd.setCursor(0, 1);
+        delay(250);
+        lcd.print("just water!");
+        delay(5000); 
+        lcd.clear();
+      }
+}
+      
+		
+		
+
 	</h1>
+
 
 	</body>
 	</html>
