@@ -20,17 +20,25 @@
 	}
 	</style>
 <body onload="JavaScript:AutoRefresh(5000)">
+	<img src="pic.jpg" alt="Arduino TV">
 	<h1>
-		<img src="pic.jpg" alt="Arduino TV">
-		Up above you can see what the arduino tv looks like, I used a 16x2 lcd screen an IR reciever and an arduino.
-		in the case that the image did not load here's the wireing.
+		
+		Up above you can see what the arduino tv looks like(yeah, I know it looks like a bomb) Before I go into how I made it I going to tell you what it does, it has two animations
+		that you can watch on it (you can selsect which one using an IR remote) the first one is two kitty having a watergun fight like 5 year olds, and a cat being like every cat...
+		He's catching a mouse!
+		
+		So, this is the part where everyone falls asleep while I explain how I made it.
+		I used a 16x2 lcd screen an IR reciever and an arduino to make the thing work, the arduino as the brains the IR receiver as the ears and the lcd as the muscle.
+		In the case that the image did not load here's the wireing.
 		vo = potentiometer vss = ground vdd = posotive rs = digital 12 rw = ground IR signal = digital 9 en = 11 d4 = 5 d5 = 4 d6 = 3 d7 = 2 A = posotive (through 220 ohm resistor).
 		TIPS; Make sure you use a 220 ohm resistor because any more resistence and the images will not show and any less you lcd might burn out; change which digital pins you use 
 		to fit your needs; use a large breadboard; Change the IR remote buttons for you remote!
 		
 		I will go into how lcd screens display images another time!
+		</h1>
 		
-		#include <LiquidCrystal.h>
+		
+	<div>	#include <LiquidCrystal.h>
 #include <IRremote.h>
 const int irpin = 9;
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
@@ -301,11 +309,10 @@ void loop() {
         lcd.clear();
       }
 }
+		</div>
       
 		
-		
-
-	</h1>
+	
 
 
 	</body>
