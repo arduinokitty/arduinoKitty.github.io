@@ -1,6 +1,11 @@
 <!doctype html>
 <html>
 <head>
+	<Script>
+		function AutoRefresh( t ){
+			setTimeout("location.reload(true);", t);
+		}
+	</Script>
  <meta charset="utf-8">
  <title>arduinokitty(Home)</title>
 </head>
@@ -20,7 +25,7 @@
 		color:white;
 	}
 	</style>
-    <body>
+    <body onload="JavaScript:Autorefresh(5000)">
 	<nav>
 		<div1>
 		<a href="arduinokittyprojects.html"title="prodjects">
