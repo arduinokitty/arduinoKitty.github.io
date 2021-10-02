@@ -18,9 +18,7 @@
 
 <body>
   <h1>
-    <div>
-      If you are a public user use the username public and the password public pass
-    </div>
+    <div>If you are a public user use the username public and the password publicpass</div>
   <main id="main-holder">
     <h1 id="login-header">Login</h1>
     
@@ -33,6 +31,7 @@
   </h1>
 <script type="text/javascript">
   
+
 const loginForm = document.getElementById("login-form");
 const loginButton = document.getElementById("login-form-submit");
 const loginErrorMsg = document.getElementById("login-error-msg");
@@ -42,19 +41,19 @@ loginButton.addEventListener("click", (e) => {
     const username = loginForm.username.value;
     const password = loginForm.password.value;
 
-    if (username === "Lyra12" && password === "Lyra0730") {
-        open('home.html')
+    if (username === "lyra" && password === "lyra12") {
+        open("home.html")
         location.reload();
     } else {
         loginErrorMsg.style.opacity = 1;
     }
-})
-    if (username === "public" && password === "publicpass") {
-        open('home.html')
+        if (username === "public" && password === "publicpass") {
+        open("home.html")
         location.reload();
     } else {
         loginErrorMsg.style.opacity = 1;
     }
+
 })
 </script>
 
