@@ -1,73 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="login-page.css">
-  <script defer src="login-page.js"></script>
-  <style>
-    body{
-      background-color:blue;
-      font-color:black;
-      font-style:italic;
+  <Script>
+    function AutoRefresh( t ){
+      setTimeout("location.reload(true);", t);
     }
-  </style>
+  </Script>
+ <meta charset="utf-8">
+ <title>arduinokitty(Home)</title>
 </head>
+<style>
+  nav{
+    background-color:darkblue;
+    color:white;
+    font-size:30px;
+    font-style:bold;
+     border-radius: 10px;
+  }
 
-<body>
-  <h1>
-    <div>If you are a public user use the username public and the password publicpass</div>
-  <main id="main-holder">
-    <h1 id="login-header">Login</h1>
+  button{
+    font-size:40px;
+        border-radius:45px;
+        background:blue;
+        color:white;
+        border-color:blue;
     
-    
-    <form id="login-form" >
-      <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
-      <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-      <input type="submit" value="Login" id="login-form-submit">
-    </form>
+  }
+  body{
+    background-position:auto;
+    background-size:auto;
+    background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/1024px-Arduino_Logo.svg.png);
+    background-repeat:no-repeat;
+    color:black;
+    background-size:auto;
+    border-radius: 25px;
+    border-color:white;
+  }
+  h1{
+    font-size:25px;
+    font-style:italic;
+    color:black;
+    background:transparent;
+                border-radius: 25px;
+  }
+  </style>
+    <body onload="JavaScript:Autorefresh(5000)">
+  <nav>
+    <div1>
+       <form method="get" action="arduinokittyprojects.html">
+<button type="submit"> Projects </button>
+        </form> 
+             <form method="get" action="howstuffworks.html">
+<button type="submit"> How stuff works</button>
+              </form>
+                   <form method="get" action="code.html">
+<button type="submit">Code</button>
+                    </form>
+                         <form method="get" action="index.html">
+<button type="submit">Login page</button>
+                    </form>
+        
+      
+    </div1>
+  </nav>
+  <h1> 
+    Hello, and welcome to arduinokitty home page, this is my website where I like to share my arduino and other coding prodjects!
+    Click the prodjects icon at the top to see a list of my projects, if you cant find the prodject your looking for or would like to suggest something you can find my email in the my info page.
+    You can also go to arduino.cc to view some of my other profjects (my username is ScientificCrabs). You can also make changes to my website through Github, here's the link to the repository: https://github.com/arduinokitty/arduinokitty.github.io/edit/main/index.html! 
+    <div>Anyway, hope you enjoy my website, and thank you for visiting!</div>
   </h1>
-<script type="text/javascript">
-  
-
-const loginForm = document.getElementById("login-form");
-const loginButton = document.getElementById("login-form-submit");
-const loginErrorMsg = document.getElementById("login-error-msg");
-
-loginButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    const username = loginForm.username.value;
-    const password = loginForm.password.value;
-        if (username === "public" && password === "publicpass") {
-        open("home.html")
-        location.reload();
-    } else {
-        loginErrorMsg.style.opacity = 1;
-    }
-
-
-
-})
-</script>
-    <script type="text/javascript">
-      const loginForm = document.getElementById("login-form");
-const loginButton = document.getElementById("login-form-submit");
-const loginErrorMsg = document.getElementById("login-error-msg");
-
-loginButton.addEventListener("click", (e) => {
-    e.preventDefault();
-          if (username === "lyra" && password === "lyra12") {
-        open("home.html")
-        location.reload();
-    } else {
-        loginErrorMsg.style.opacity = 1;
-    }
-    </script>
-
-  </main>
+  <div>
+    Most of our features are not available yet, hang tight!
+  </div>
 </body>
-
-</html>
+</html> 
 
