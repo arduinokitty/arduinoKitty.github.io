@@ -319,7 +319,62 @@
       <div>}</div>
 <div>}</div>
 		</h2>
-      
+      <h3>
+	      Hey, everybody! I know I havn't posted in a while so I'm going to give you the process of me building something. 
+	      I am currently working on a machine to keep people from staying up on their phones. I havn't done the wiring or tested it yet but here's how it's going to work, 
+	      it will have a ligh sensor to sence bright lights and an rtc module to figure ou the time! But what if I need to go to the washroom  at night? You may ask, well I also made sure
+	      to add a button just in case you have to go!
+	      <div> Here's the code</div>
+	      <pre>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">Servo</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><font color="#d35400">Wire</font><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">RTClib</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+<font color="#00979c">int</font> <font color="#000000">sp</font> <font color="#434f54">=</font> <font color="#000000">5</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">lp</font> <font color="#434f54">=</font> <font color="#000000">A0</font><font color="#000000">;</font>
+<font color="#00979c">boolean</font> <font color="#000000">button_status</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">button_pin</font> <font color="#434f54">=</font> <font color="#000000">2</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">lv</font><font color="#000000">;</font>
+<b><font color="#d35400">RTC_DS1307</font></b> <font color="#000000">RTC</font><font color="#000000">;</font> 
+<font color="#00979c">int</font> <font color="#000000">tmins</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">thours</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+<b><font color="#d35400">Servo</font></b> <font color="#000000">servo</font><font color="#000000">;</font>
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#000000">servo</font><font color="#434f54">.</font><font color="#d35400">attach</font><font color="#000000">(</font><font color="#000000">sp</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">servo</font><font color="#434f54">.</font><font color="#d35400">write</font><font color="#000000">(</font><font color="#000000">0</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">Wire</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">RTC</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#434f54">!</font> <font color="#000000">RTC</font><font color="#434f54">.</font><font color="#d35400">isrunning</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;RTC is NOT running!&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">&#47;&#47;RTC.adjust(DateTime(__DATE__, __TIME__)); </font>
+ &nbsp;<font color="#434f54">&#47;&#47; Use ONCE then comment out and reload</font>
+ &nbsp;<font color="#000000">RTC</font><font color="#434f54">.</font><font color="#d35400">adjust</font><font color="#000000">(</font><b><font color="#d35400">DateTime</font></b><font color="#000000">(</font><font color="#000000">21</font><font color="#434f54">,</font> <font color="#000000">18</font><font color="#434f54">,</font> <font color="#000000">5</font><font color="#434f54">,</font> <font color="#000000">12</font><font color="#434f54">,</font> <font color="#000000">55</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">;</font> 
+ &nbsp;<font color="#000000">}</font> 
+<font color="#000000">}</font>
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="#d35400">DateTime</font></b> <font color="#d35400">now</font> <font color="#434f54">=</font> <font color="#000000">RTC</font><font color="#434f54">.</font><font color="#d35400">now</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">thours</font> <font color="#434f54">=</font> <font color="#d35400">now</font><font color="#434f54">.</font><font color="#d35400">hour</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">tmins</font> <font color="#434f54">=</font> <font color="#d35400">now</font><font color="#434f54">.</font><font color="#d35400">minute</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#d35400">now</font><font color="#434f54">.</font><font color="#d35400">hour</font><font color="#000000">(</font><font color="#000000">)</font><font color="#434f54">,</font> <font color="#00979c">DEC</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#00979c">&#39;:&#39;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#d35400">now</font><font color="#434f54">.</font><font color="#d35400">minute</font><font color="#000000">(</font><font color="#000000">)</font><font color="#434f54">,</font> <font color="#00979c">DEC</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">500</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lv</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">lp</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;Ligh level: &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">lv</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">button_status</font> <font color="#434f54">=</font> <font color="#d35400">digitalRead</font><font color="#000000">(</font><font color="#000000">button_pin</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#5e6d03">while</font><font color="#000000">(</font><font color="#000000">thours</font> <font color="#434f54">&gt;</font> <font color="#000000">17</font> <font color="#434f54">&amp;&amp;</font> <font color="#000000">lv</font> <font color="#434f54">&gt;</font> <font color="#000000">500</font><font color="#000000">)</font><font color="#000000">{</font>
+ &nbsp;<font color="#5e6d03">if</font><font color="#000000">(</font><font color="#000000">button_status</font> <font color="#434f54">==</font> <font color="#00979c">false</font><font color="#000000">)</font><font color="#000000">{</font>
+ &nbsp;<font color="#000000">servo</font><font color="#434f54">.</font><font color="#d35400">write</font><font color="#000000">(</font><font color="#000000">90</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">500</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">servo</font><font color="#434f54">.</font><font color="#d35400">write</font><font color="#000000">(</font><font color="#000000">0</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;Put away your phone (or I pad e.t.c&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+</pre>
+	</h3>
 		
 	
 
